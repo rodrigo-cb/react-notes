@@ -1,13 +1,95 @@
+$note_header_height: 40px;
+
 body, html {
   font-family: "Roboto", sans-serif;
-  background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
-  height: 100%;
+  background-image: url('./img/school.png');
+  box-sizing: content-box;
+  margin: 0px;
+  padding: 0px;
 }
 
-.logo {
-  background-image: url('./img/bar_logo.png');
-  width: 100px;
-  height: 100px;
-  background-repeat: no-repeat;
-  background-size: contain;
+#add-bar{
+  background-color: #4c8492;
+  box-shadow: rgb(20, 20, 20);
+  -webkit-box-shadow: 3px 3px 4px 5px rgb(184, 184, 184);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  input {
+    font-size: 1.5em;
+    border-radius: .25em;
+    padding-left: 5px;
+    width: 75vw;
+  }
+  button{
+    width: 150px;
+  }
+}
+
+#notes-section{
+  background-color: blue;
+}
+
+.note{
+  position: absolute;
+  min-height: 200px;
+  min-width: 200px;
+  width: min-content;
+  background-color: #fffde8;
+  display: flex;
+  flex-direction: column;
+  .note-header{
+    background-color: #f7e0a3;
+    height: $note_header_height;
+    min-width: 200px;
+    min-width: max-content;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .note-title{
+      font-size: 1.6em;
+      padding-left: 7px;
+    }
+    .note-icons{
+      cursor: pointer;
+      font-size: 1.2em;
+      display: inline-block;
+      text-align: end;
+      padding-left: 8px;
+      i{
+        padding: 7px;
+      }
+      .fa-arrows-alt{
+        cursor:grab;
+        padding-left: 15px;
+      }
+    }
+  }
+  .note-content{
+    flex-grow: 1;
+    textarea{
+      // display: inline-block;
+      // height : calc( 100% - 40px );
+      // align-self: center;
+      height: 95%;
+      display: inline-block;
+      width: 95%;
+    }
+    .note-text{
+      font-size: 1.2em;
+    }
+  }
+}
+
+
+#test{
+  background-color: crimson;
+  min-height: 400px;
+  width: 400px;
+  max-width: 1000px;
+
 }
