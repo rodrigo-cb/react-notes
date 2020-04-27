@@ -28,8 +28,8 @@ class App extends Component {
     const note = {
       title: text,
       text: '',
-      x: 0,
-      y: 0,
+      x: 8,
+      y: 122,
       zIndex: 0,
     };
     db.addNote(note);

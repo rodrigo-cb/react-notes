@@ -48,6 +48,7 @@ html {
     height: $note_header_height;
     width: max-content;
     max-width: 800px;
+    min-width: 200px;
     display: flex;
     justify-content: space-between;
     align-items: center;
