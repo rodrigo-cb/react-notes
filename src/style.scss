@@ -1,14 +1,16 @@
 $note_header_height: 40px;
 
-body, html {
+body,
+html {
   font-family: "Roboto", sans-serif;
-  background-image: url('./img/school.png');
+  background-image: url("./img/school.png");
   box-sizing: content-box;
   margin: 0px;
   padding: 0px;
 }
 
-#add-bar{
+#add-bar {
+  position: fixed;
   background-color: #4c8492;
   box-shadow: rgb(20, 20, 20);
   -webkit-box-shadow: 3px 3px 4px 5px rgb(184, 184, 184);
@@ -20,20 +22,20 @@ body, html {
   padding-bottom: 40px;
   input {
     font-size: 1.5em;
-    border-radius: .25em;
+    border-radius: 0.25em;
     padding-left: 5px;
     width: 75vw;
   }
-  button{
+  button {
     width: 150px;
   }
 }
 
-#notes-section{
+#notes-section {
   background-color: blue;
 }
 
-.note{
+.note {
   position: absolute;
   min-height: 200px;
   min-width: 200px;
@@ -41,55 +43,63 @@ body, html {
   background-color: #fffde8;
   display: flex;
   flex-direction: column;
-  .note-header{
+  .note-header {
     background-color: #f7e0a3;
     height: $note_header_height;
-    min-width: 200px;
-    min-width: max-content;
+    width: max-content;
     max-width: 800px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .note-title{
+    .note-title {
       font-size: 1.6em;
+      margin: 3px;
       padding-left: 7px;
     }
-    .note-icons{
+    .title-input{
+      height: 70%;
+      width: 250px;
+    }
+    .note-icons {
       cursor: pointer;
       font-size: 1.2em;
       display: inline-block;
       text-align: end;
       padding-left: 8px;
-      i{
+      i {
         padding: 7px;
       }
-      .fa-arrows-alt{
-        cursor:grab;
+      .fa-arrows-alt {
+        cursor: grab;
         padding-left: 15px;
       }
     }
   }
-  .note-content{
+  .note-content {
     flex-grow: 1;
-    textarea{
-      // display: inline-block;
-      // height : calc( 100% - 40px );
-      // align-self: center;
-      height: 95%;
-      display: inline-block;
-      width: 95%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    textarea {
+      height: 98%;
+      resize: none;
+      flex-grow: 1;
+      width: 99%;
     }
-    .note-text{
+    .note-text {
       font-size: 1.2em;
+      margin: 3px;
+      p{
+        overflow-wrap: anywhere;
+        margin: 3px;
+      }
     }
   }
 }
 
-
-#test{
+#test {
   background-color: crimson;
   min-height: 400px;
   width: 400px;
   max-width: 1000px;
-
 }

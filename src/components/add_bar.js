@@ -12,8 +12,6 @@ class AddBar extends Component {
   // eslint-disable-next-line class-methods-use-this
   onInputChange = (event) => {
     this.setState({ note_title: event.target.value });
-    // this.props.onSearchChange(event.target.value);
-    // console.log(event.target.value);
   }
 
   onButtonPress = () => {

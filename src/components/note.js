@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import marked from 'marked';
-// import { isMap } from 'immutable';
-// import { Map } from 'immutable';
+import { dragNote } from '../services/datastore';
 
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -11,9 +10,6 @@ class Note extends Component {
     super(props);
     this.state = {
       isEditing: false,
-      // eslint-disable-next-line react/no-unused-state
-      // title: 'o',
-      // content: 'odf',
     };
   }
 
@@ -35,6 +31,14 @@ class Note extends Component {
     this.props.onEdit(this.props.id, event.target.value);
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  handleDrag = (e, data) => {
+    dragNote(this.props.id, data.x, data.y);
+  }
+
+  onTitleChange = (event) => {
+    this.props.onTitleEdit(this.props.id, event.target.value);
+  }
 
   renderTextSection() {
     if (this.state.isEditing) {
@@ -50,32 +54,50 @@ class Note extends Component {
     }
   }
 
+  renderEditIcon() {
+    if (this.state.isEditing) {
+      return <i className="fas fa-check" role="button" aria-label="Edit Note" onClick={this.toggleEdit} tabIndex={0} />;
+    } else {
+      return <i className="fas fa-edit" role="button" aria-label="Edit Note" onClick={this.toggleEdit} tabIndex={0} />;
+    }
+  }
 
-  // // eslint-disable-next-line class-methods-use-this
-  // onInputChange = (event) => {
-  //   this.setState({ title: event.target.value });
-  //   // this.props.onSearchChange(event.target.value);
-  //   // console.log(event.target.value);
-  // }
+  renderTitleSection() {
+    if (this.state.isEditing) {
+      return (
+        <input className="title-input"
+          value={this.props.notes.getIn([this.props.id, 'title'])}
+          onChange={this.onTitleChange}
+        />
+      );
+    } else {
+      return (
+        <p className="note-title">
+          {this.props.notes.getIn([this.props.id, 'title'])}
+        </p>
+      );
+    }
+  }
 
 
   render() {
-    const title = this.props.notes.getIn([this.props.id, 'title']);
-    // const text = this.props.notes.getIn([this.props.id, 'text']);
     return (
-      <Draggable>
+      <Draggable handle=".fa-arrows-alt"
+        position={{
+          x: this.props.notes.getIn([this.props.id, 'x']), y: this.props.notes.getIn([this.props.id, 'y']),
+        }}
+        onDrag={this.handleDrag}
+      >
         <div className="note">
           <div className="note-header">
-            <p className="note-title">{title}</p>
+            {this.renderTitleSection()}
             <p className="note-icons">
               <i className="fas fa-trash-alt" role="button" aria-label="Delete Note" onClick={this.noteDelete} tabIndex={0} />
-              <i className="fas fa-edit" role="button" aria-label="Edit Note" onClick={this.toggleEdit} tabIndex={0} />
+              {this.renderEditIcon()}
               <i className="fas fa-arrows-alt" />
             </p>
           </div>
           <div className="note-content">
-            {/* eslint-disable-next-line react/no-danger */}
-            {/* <p className="note-text" dangerouslySetInnerHTML={{ __html: marked(text || '') }} /> */}
             {this.renderTextSection()}
           </div>
         </div>
